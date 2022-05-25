@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { CollectPointEntity } from './collect-point.entity';
+import { CollectPointEntity } from '../../collect-point/entities/collect-point.entity';
 
 export enum ParameterName {
   ALUMINIO_DISSOLVIDO = 'Alumínio dissolvido',

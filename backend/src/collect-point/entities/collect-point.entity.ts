@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { ParameterEntity } from './parameter.entity';
+import { ParameterEntity } from '../../parameter/entities/parameter.entity';
 
 @Entity()
 export class CollectPointEntity {
