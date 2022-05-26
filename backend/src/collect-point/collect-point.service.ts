@@ -16,7 +16,7 @@ export class CollectPointService {
   ) {}
 
   async findAll(): Promise<CollectPointEntity[]> {
-    return this.collectPointRepository.find();
+    return this.collectPointRepository.find({ relations: ['parameters'] });
   }
 
   async findById(id: number): Promise<CollectPointEntity> {
