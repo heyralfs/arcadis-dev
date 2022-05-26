@@ -16,7 +16,10 @@ export class ParameterEntity {
   value: number;
 
   @Column()
-  collectionDate: string;
+  overLimit: boolean;
+
+  @Column()
+  collectionDate: number;
 
   @ManyToOne(
     () => CollectPointEntity,
