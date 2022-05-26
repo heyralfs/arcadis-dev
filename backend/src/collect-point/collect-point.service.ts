@@ -19,6 +19,10 @@ export class CollectPointService {
     return this.collectPointRepository.find();
   }
 
+  async findById(id: number): Promise<CollectPointEntity> {
+    return this.collectPointRepository.findOneBy({ id });
+  }
+
   async create(
     collectPointData: CreateCollectPointDto,
   ): Promise<CollectPointEntity> {
