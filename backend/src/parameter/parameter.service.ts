@@ -68,4 +68,16 @@ export class ParameterService {
 
     return this.parameterRepository.save(parameter);
   }
+
+  async delete(id: number): Promise<ParameterEntity> {
+    const parameter = await this.parameterRepository.findOneBy({ id });
+
+    if (!parameter) {
+      throw new NotFoundException([`Parâmetro com id ${id} não encontrado.`]);
+    }
+
+    await this.parameterRepository.delete({ id });
+
+    return parameter;
+  }
 }

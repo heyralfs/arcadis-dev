@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { CreateParameterDto } from './dto/create-parameter.dto';
 import { ParameterEntity } from './entities/parameter.entity';
 import { ParameterService } from './parameter.service';
@@ -15,5 +23,10 @@ export class ParameterController {
   @Post()
   create(@Body() body: CreateParameterDto): Promise<ParameterEntity> {
     return this.parameterService.create(body);
+  }
+
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.parameterService.delete(id);
   }
 }
