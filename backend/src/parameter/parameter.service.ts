@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CollectPointService } from 'src/collect-point/collect-point.service';
 import { Repository } from 'typeorm';
@@ -28,6 +32,22 @@ export class ParameterService {
     if (!paramConstants) {
       throw new NotFoundException([
         `Não foi encontrado nenhum parâmetro com o código ${parameterData.code}`,
+      ]);
+    }
+
+    const parameterAlreadyRegistred = await this.parameterRepository
+      .createQueryBuilder('param')
+      .leftJoinAndSelect('param.collectPoint', 'collectPoint')
+      .where('collectPoint.id = :id', { id: parameterData.collectPointId })
+      .andWhere('param.code = :code', { code: parameterData.code })
+      .andWhere('param.collectionDate = :date', {
+        date: parameterData.collectionDate,
+      })
+      .getOne();
+
+    if (parameterAlreadyRegistred) {
+      throw new BadRequestException([
+        'Este parâmetro, com esta data, já foi cadastrado para o ponto de coleta em questão.',
       ]);
     }
 
