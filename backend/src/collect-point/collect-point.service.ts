@@ -36,13 +36,13 @@ export class CollectPointService {
       ]);
     }
 
-    const coordinatesAlreadyRegistred = await this.collectPointRepository
+    const coordinatesAlreadyRegistered = await this.collectPointRepository
       .createQueryBuilder('collectPoint')
       .where('collectPoint.xCoord = :x', { x: collectPointData.xCoord })
       .andWhere('collectPoint.yCoord = :y', { y: collectPointData.yCoord })
       .getOne();
 
-    if (coordinatesAlreadyRegistred) {
+    if (coordinatesAlreadyRegistered) {
       throw new BadRequestException([
         'Já existe um ponto de coleta cadastrado com estas coordenadas.',
       ]);
