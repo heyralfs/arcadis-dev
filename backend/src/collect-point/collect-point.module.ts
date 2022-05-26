@@ -9,5 +9,6 @@ import { CollectPointEntity } from './entities/collect-point.entity';
   imports: [TypeOrmModule.forFeature([CollectPointEntity])],
   controllers: [CollectPointController],
   providers: [CollectPointService],
+  exports: [CollectPointService],
 })
 export class CollectPointModule {}
