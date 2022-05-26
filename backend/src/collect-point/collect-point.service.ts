@@ -73,7 +73,7 @@ export class CollectPointService {
     return { ...collectPoint, ...collectPointData };
   }
 
-  async detele(collectPointId: number): Promise<CollectPointEntity> {
+  async delete(collectPointId: number): Promise<CollectPointEntity> {
     const collectPoint = await this.collectPointRepository.findOneBy({
       id: collectPointId,
     });

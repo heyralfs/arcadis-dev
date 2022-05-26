@@ -36,6 +36,6 @@ export class CollectPointController {
 
   @Delete(':id')
   delete(@Param('id', ParseIntPipe) id: number): Promise<CollectPointEntity> {
-    return this.collectPointService.detele(id);
+    return this.collectPointService.delete(id);
   }
 }
