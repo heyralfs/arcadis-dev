@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCollectPointDto } from './dto/create-collect-point.dto';
@@ -29,5 +33,27 @@ export class CollectPointService {
     }
 
     return this.collectPointRepository.save(collectPointData);
+  }
+
+  async update(
+    collectPointId: number,
+    collectPointData: CreateCollectPointDto,
+  ): Promise<CollectPointEntity> {
+    const collectPoint = await this.collectPointRepository.findOneBy({
+      id: collectPointId,
+    });
+
+    if (!collectPoint) {
+      throw new NotFoundException([
+        `Ponto de coleta com id ${collectPointId} não encontrado.`,
+      ]);
+    }
+
+    await this.collectPointRepository.update(
+      { id: collectPointId },
+      collectPointData,
+    );
+
+    return { ...collectPoint, ...collectPointData };
   }
 }
