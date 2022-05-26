@@ -56,4 +56,20 @@ export class CollectPointService {
 
     return { ...collectPoint, ...collectPointData };
   }
+
+  async detele(collectPointId: number): Promise<CollectPointEntity> {
+    const collectPoint = await this.collectPointRepository.findOneBy({
+      id: collectPointId,
+    });
+
+    if (!collectPoint) {
+      throw new NotFoundException([
+        `Ponto de coleta com id ${collectPointId} não encontrado.`,
+      ]);
+    }
+
+    await this.collectPointRepository.delete({ id: collectPointId });
+
+    return collectPoint;
+  }
 }

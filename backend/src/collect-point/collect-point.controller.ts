@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -31,5 +32,10 @@ export class CollectPointController {
     @Body() body: CreateCollectPointDto,
   ): Promise<CollectPointEntity> {
     return this.collectPointService.update(id, body);
+  }
+
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number): Promise<CollectPointEntity> {
+    return this.collectPointService.detele(id);
   }
 }
