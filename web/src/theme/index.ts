@@ -4,4 +4,4 @@ import { colors } from "./colors";
 import { components } from "./components";
 import { fonts } from "./fonts";
 
-export const theme = extendTheme({ components, colors, fonts });
+export const theme = extendTheme({ colors, fonts, components });
