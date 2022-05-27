@@ -2,12 +2,13 @@
  * Floating labels
  * https://chakra-ui.com/docs/components/recipes/floating-labels
  */
+import type { ComponentStyleConfig } from "@chakra-ui/theme";
 
 const activeLabelStyles = {
 	transform: "scale(0.85) translateY(-24px)",
 };
 
-export const Form = {
+export const Form: ComponentStyleConfig = {
 	variants: {
 		floating: {
 			container: {
@@ -34,5 +35,8 @@ export const Form = {
 				},
 			},
 		},
+	},
+	defaultProps: {
+		variant: "floating",
 	},
 };
