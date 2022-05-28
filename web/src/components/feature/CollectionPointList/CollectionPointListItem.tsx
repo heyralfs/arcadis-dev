@@ -19,15 +19,11 @@ interface CollectionPointListItemProps {
 export function CollectionPointListItem({
 	collectionPoint,
 }: CollectionPointListItemProps) {
-	const hasViolation = !!collectionPoint.parameters.filter(
-		(param) => param.overLimit
-	).length;
-
 	return (
 		<Accordion allowMultiple>
 			<AccordionItem
 				borderWidth="1px"
-				borderColor={hasViolation ? "red.100" : "gray.200"}
+				borderColor={collectionPoint.irregular ? "red.100" : "gray.200"}
 				borderRadius={4}
 				boxShadow="sm"
 			>
@@ -42,7 +38,7 @@ export function CollectionPointListItem({
 							>
 								{collectionPoint.name}
 							</Text>
-							{hasViolation && (
+							{collectionPoint.irregular && (
 								<Badge ml={2} colorScheme="red">
 									Irregular
 								</Badge>

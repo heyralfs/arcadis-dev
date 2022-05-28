@@ -13,5 +13,6 @@ export interface ICollectionPoint {
 	name: string;
 	xCoord: number;
 	yCoord: number;
+	irregular: boolean;
 	parameters: IParameter[];
 }

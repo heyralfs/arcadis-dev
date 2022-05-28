@@ -20,9 +20,22 @@ export function CollectionPointsProvider({ children }: ProviderProps) {
 		ICollectionPoint[]
 	>([]);
 
+	function hasViolation(collectionPoint: ICollectionPoint): boolean {
+		return !!collectionPoint.parameters.filter((param) => param.overLimit)
+			.length;
+	}
+
 	function getCollectionPoints() {
 		api.get("collect-points")
-			.then((resp) => setCollectionPoints(resp.data))
+			.then(({ data }) => {
+				const formattedData = data.map(
+					(collectionPoint: ICollectionPoint) => ({
+						...collectionPoint,
+						irregular: hasViolation(collectionPoint),
+					})
+				);
+				setCollectionPoints(formattedData);
+			})
 			.catch((err) => console.log(err));
 	}
 
