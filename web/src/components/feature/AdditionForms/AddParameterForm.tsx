@@ -75,7 +75,7 @@ export function AddParameterForm() {
 				}}
 				onSubmit={onSubmit}
 			>
-				{({ handleSubmit, errors, touched }) => (
+				{({ handleSubmit, errors, touched, values }) => (
 					<form onSubmit={handleSubmit}>
 						<ModalBody>
 							<VStack spacing={6}>
@@ -133,7 +133,16 @@ export function AddParameterForm() {
 											return error;
 										}}
 									/>
-									<FormLabel>Valor</FormLabel>
+									<FormLabel>
+										Valor (em{" "}
+										{
+											parameterConstants.filter(
+												(param) =>
+													param.code === values.code
+											)[0].unit
+										}
+										)
+									</FormLabel>
 									<FormErrorMessage>
 										{errors.value}
 									</FormErrorMessage>
