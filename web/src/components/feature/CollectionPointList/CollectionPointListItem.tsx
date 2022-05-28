@@ -54,7 +54,7 @@ export function CollectionPointListItem({
 
 				<AccordionPanel>
 					<Text fontSize="sm" color="gray.400" mb={2}>
-						Corrdenadas: {collectionPoint.xCoord},{" "}
+						Coordenadas: {collectionPoint.xCoord},{" "}
 						{collectionPoint.yCoord}
 					</Text>
 
