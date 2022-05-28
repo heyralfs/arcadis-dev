@@ -16,6 +16,9 @@ export class ParameterEntity {
   value: number;
 
   @Column()
+  unit: string;
+
+  @Column()
   overLimit: boolean;
 
   @Column()

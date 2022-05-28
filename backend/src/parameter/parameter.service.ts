@@ -54,6 +54,7 @@ export class ParameterService {
     parameter.code = parameterData.code;
     parameter.name = paramConstants.name;
     parameter.value = parameterData.value;
+    parameter.unit = paramConstants.unit;
     parameter.overLimit = parameterData.value > paramConstants.limit;
     parameter.collectionDate = parameterData.collectionDate;
     parameter.collectPoint = await this.collectPointService.findById(
