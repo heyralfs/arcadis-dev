@@ -29,7 +29,11 @@ export function FormDisplayControlProvider({ children }: ProviderProps) {
 
 	return (
 		<FormDisplayControlContext.Provider
-			value={{ formDisplayed, openForm, closeForm }}
+			value={{
+				formDisplayed,
+				openForm,
+				closeForm,
+			}}
 		>
 			{children}
 		</FormDisplayControlContext.Provider>

@@ -1,14 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { ICollectionPoint } from "../../../types/CollectionPoint.interface";
+import { useCollectionPointsContext } from "../../../contexts/CollectionPointsContext/useCollectionPointsContext";
 import { CollectionPointListItem } from "./CollectionPointListItem";
 
-interface CollectionPointListProps {
-	collectionPoints: ICollectionPoint[];
-}
+export function CollectionPointList() {
+	const { collectionPoints } = useCollectionPointsContext();
 
-export function CollectionPointList({
-	collectionPoints,
-}: CollectionPointListProps) {
 	return (
 		<Flex mx="auto" maxW="720px" flexDir="column" gap={4} p={8}>
 			{!collectionPoints.length ? (
