@@ -1,6 +1,6 @@
 import { Heading, Image, Stack } from "@chakra-ui/react";
-import { AdditionForms } from "./components/AdditionForms";
-import { AddMenu } from "./components/AddMenu";
+import { AdditionForms } from "./components/feature/AdditionForms";
+import { FormsMenu } from "./components/feature/FormsMenu";
 import Logo from "./logo.svg";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
 
 			<AdditionForms />
 
-			<AddMenu />
+			<FormsMenu />
 		</Stack>
 	);
 }

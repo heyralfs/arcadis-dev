@@ -8,7 +8,7 @@ import {
 	ModalHeader,
 	VStack,
 } from "@chakra-ui/react";
-import { Input } from "../@shared/Input";
+import { Input } from "../../shared/Input";
 
 export function AddCollectPointForm() {
 	return (

@@ -7,8 +7,8 @@ import {
 	ModalHeader,
 	VStack,
 } from "@chakra-ui/react";
-import { Input } from "../@shared/Input";
-import { Select } from "../@shared/Select";
+import { Input } from "../../shared/Input";
+import { Select } from "../../shared/Select";
 
 export function AddParameterForm() {
 	return (

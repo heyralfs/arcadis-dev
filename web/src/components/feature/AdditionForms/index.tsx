@@ -4,7 +4,7 @@ import {
 	ModalContent,
 	ModalOverlay,
 } from "@chakra-ui/react";
-import { useFormDisplayControl } from "../../contexts/FormDisplayControlContext/useFormDisplayControl";
+import { useFormDisplayControl } from "../../../contexts/FormDisplayControlContext/useFormDisplayControl";
 import { AddCollectPointForm } from "./AddColectPointForm";
 import { AddParameterForm } from "./AddParameterForm";
 

@@ -7,9 +7,9 @@ import {
 	MenuList,
 	Tooltip,
 } from "@chakra-ui/react";
-import { useFormDisplayControl } from "../../contexts/FormDisplayControlContext/useFormDisplayControl";
+import { useFormDisplayControl } from "../../../contexts/FormDisplayControlContext/useFormDisplayControl";
 
-export function AddMenu() {
+export function FormsMenu() {
 	const { openForm } = useFormDisplayControl();
 
 	return (
