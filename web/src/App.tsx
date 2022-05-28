@@ -1,18 +1,16 @@
-import { Heading, Image, Stack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import { AdditionForms } from "./components/feature/AdditionForms";
 import { FormsMenu } from "./components/feature/FormsMenu";
-import Logo from "./logo.svg";
+import { Header } from "./components/feature/Header";
 
 function App() {
 	return (
-		<Stack spacing={4} p={8} align="center">
-			<Image width={300} src={Logo} alt="logo" />
-			<Heading>Hello world</Heading>
+		<>
+			<Header />
 
 			<AdditionForms />
-
 			<FormsMenu />
-		</Stack>
+		</>
 	);
 }
 
