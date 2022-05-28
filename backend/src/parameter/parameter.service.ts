@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CollectPointService } from '../../src/collect-point/collect-point.service';
+import { CollectPointService } from '../collect-point/collect-point.service';
 import { Repository } from 'typeorm';
 import { CreateParameterDto } from './dto/create-parameter.dto';
 import { ParameterEntity } from './entities/parameter.entity';
