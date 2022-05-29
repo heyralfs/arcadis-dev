@@ -24,6 +24,7 @@ describe('ParameterController', () => {
     collectionDate: 1234567890,
     value: 1,
     overLimit: true,
+    unit: 'mg/l',
     collectPoint: mockCollectPoint,
   };
 

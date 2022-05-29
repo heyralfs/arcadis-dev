@@ -133,7 +133,7 @@ describe('CollectPointService', () => {
   describe('update', () => {
     const id = 1;
     const body: CreateCollectPointDto = {
-      name: 'Ponto de Coleta B',
+      name: 'ponto de coleta b',
       xCoord: 1,
       yCoord: 1,
     };
@@ -142,6 +142,15 @@ describe('CollectPointService', () => {
       jest
         .spyOn(collectPointRepository, 'findOneBy')
         .mockImplementationOnce(() => Promise.resolve(mockCollectPoint));
+
+      const createQueryBuilder: any = {
+        where: () => createQueryBuilder,
+        orWhere: () => createQueryBuilder,
+        getOne: () => null,
+      };
+      jest
+        .spyOn(collectPointRepository, 'createQueryBuilder')
+        .mockImplementationOnce(() => createQueryBuilder);
 
       jest
         .spyOn(collectPointRepository, 'update')
