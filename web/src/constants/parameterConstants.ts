@@ -22,4 +22,6 @@ export const parameterConstants = [
 	{ code: "CROMO_TOTAL", name: "Cromo total", unit: "mg/l", limit: 0.05 },
 	{ code: "CADMIO_TOTAL", name: "Cádmio total", unit: "mg/l", limit: 0.001 },
 	{ code: "DBO", name: "DBO", unit: "mg O2/l", limit: 5 },
-];
+] as const;
+
+export const parameterCodes = parameterConstants.map((param) => param.code);
