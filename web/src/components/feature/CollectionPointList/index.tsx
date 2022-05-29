@@ -8,11 +8,10 @@ export function CollectionPointList() {
 	const [search] = useSearchParams();
 	const { collectionPoints, isFetching } = useCollectionPointsContext();
 
-	const searchPramTypes = search.getAll("paramType");
-	const showOnlyViolated = !!search.get("onlyViolated");
-	const searchCollectPointTerm = search.get("collectionPoint") || "";
-
 	function handleSearchParams(collectPointsArr: ICollectionPoint[]) {
+		const searchPramTypes = search.getAll("paramType");
+		const showOnlyViolated = !!search.get("onlyViolated");
+		const searchCollectPointTerm = search.get("collectionPoint") || "";
 		let filteredArr = collectPointsArr.filter((item) =>
 			item.name.toLowerCase().includes(searchCollectPointTerm)
 		);
