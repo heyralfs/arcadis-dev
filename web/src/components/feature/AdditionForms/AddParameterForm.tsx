@@ -91,7 +91,7 @@ export function AddParameterForm() {
 													key={`collect-point_${collectPoint.id}`}
 													value={collectPoint.id}
 												>
-													{collectPoint.name}
+													{collectPoint.name.toUpperCase()}
 												</option>
 											)
 										)}
