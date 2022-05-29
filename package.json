@@ -3,7 +3,10 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
-	"scripts": {},
+	"scripts": {
+		"yarn-install-all": "cd backend && yarn install && cd ../web && yarn install",
+		"npm-install-all": "cd backend && npm install && cd ../web && npm install"
+	},
 	"author": "",
 	"license": "ISC"
 }
