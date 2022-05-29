@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Skeleton, Text } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import { useCollectionPointsContext } from "../../../contexts/CollectionPointsContext/useCollectionPointsContext";
 import { ICollectionPoint } from "../../../types/CollectionPoint.interface";
@@ -6,7 +6,7 @@ import { CollectionPointListItem } from "./CollectionPointListItem";
 
 export function CollectionPointList() {
 	const [search] = useSearchParams();
-	const { collectionPoints } = useCollectionPointsContext();
+	const { collectionPoints, isFetching } = useCollectionPointsContext();
 
 	const searchPramTypes = search.getAll("paramType");
 	const showOnlyViolated = !!search.get("onlyViolated");
@@ -31,6 +31,14 @@ export function CollectionPointList() {
 	}
 
 	const filteredCollectionPoints = handleSearchParams(collectionPoints);
+
+	if (isFetching) {
+		return (
+			<Flex mx="auto" maxW="720px" flexDir="column" gap={4} p={8}>
+				<Skeleton w="100%" h="40px" />
+			</Flex>
+		);
+	}
 
 	return (
 		<Flex mx="auto" maxW="720px" flexDir="column" gap={4} p={8}>

@@ -5,6 +5,7 @@ import { ICollectionPoint } from "../../types/CollectionPoint.interface";
 interface ICollectionPointsContext {
 	collectionPoints: ICollectionPoint[];
 	getCollectionPoints: () => void;
+	isFetching: boolean;
 }
 
 interface ProviderProps {
@@ -19,6 +20,7 @@ export function CollectionPointsProvider({ children }: ProviderProps) {
 	const [collectionPoints, setCollectionPoints] = useState<
 		ICollectionPoint[]
 	>([]);
+	const [isFetching, setIsFetching] = useState(true);
 
 	function hasViolation(collectionPoint: ICollectionPoint): boolean {
 		return !!collectionPoint.parameters.filter((param) => param.overLimit)
@@ -26,6 +28,7 @@ export function CollectionPointsProvider({ children }: ProviderProps) {
 	}
 
 	function getCollectionPoints() {
+		setIsFetching(true);
 		api.get("collect-points")
 			.then(({ data }) => {
 				const formattedData = data.map(
@@ -36,12 +39,13 @@ export function CollectionPointsProvider({ children }: ProviderProps) {
 				);
 				setCollectionPoints(formattedData);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log(err))
+			.finally(() => setIsFetching(false));
 	}
 
 	return (
 		<CollectionPointsContext.Provider
-			value={{ collectionPoints, getCollectionPoints }}
+			value={{ collectionPoints, getCollectionPoints, isFetching }}
 		>
 			{children}
 		</CollectionPointsContext.Provider>
