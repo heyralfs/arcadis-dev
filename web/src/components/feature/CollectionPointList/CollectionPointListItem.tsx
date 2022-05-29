@@ -7,9 +7,11 @@ import {
 	Badge,
 	Box,
 	Flex,
+	HStack,
 	Text,
 } from "@chakra-ui/react";
 import { ICollectionPoint } from "../../../types/CollectionPoint.interface";
+import { EditPopover } from "./EditPopover";
 import { ParameterList } from "./ParameterList";
 
 interface CollectionPointListItemProps {
@@ -49,10 +51,18 @@ export function CollectionPointListItem({
 				</AccordionButton>
 
 				<AccordionPanel>
-					<Text fontSize="sm" color="gray.400" mb={2}>
-						Coordenadas: {collectionPoint.xCoord},{" "}
-						{collectionPoint.yCoord}
-					</Text>
+					<HStack
+						justifyContent="space-between"
+						alignItems="center"
+						mb={2}
+					>
+						<Text fontSize="sm" color="gray.400">
+							Coordenadas: {collectionPoint.xCoord},{" "}
+							{collectionPoint.yCoord}
+						</Text>
+
+						<EditPopover collectionPoint={collectionPoint} />
+					</HStack>
 
 					<Text
 						fontSize="sm"
