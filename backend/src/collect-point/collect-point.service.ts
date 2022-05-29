@@ -27,7 +27,7 @@ export class CollectPointService {
     collectPointData: CreateCollectPointDto,
   ): Promise<CollectPointEntity> {
     const isNameAlreadyInUse = await this.collectPointRepository.findOneBy({
-      name: collectPointData.name,
+      name: collectPointData.name.toLowerCase(),
     });
 
     if (isNameAlreadyInUse) {
@@ -48,7 +48,10 @@ export class CollectPointService {
       ]);
     }
 
-    return this.collectPointRepository.save(collectPointData);
+    return this.collectPointRepository.save({
+      ...collectPointData,
+      name: collectPointData.name.toLowerCase(),
+    });
   }
 
   async update(
