@@ -8,10 +8,16 @@ export function CollectionPointList() {
 	const [search] = useSearchParams();
 	const { collectionPoints, isFetching } = useCollectionPointsContext();
 
+	const searchPramTypes = search.getAll("paramType");
+	const showOnlyViolated = !!search.get("onlyViolated");
+	const searchCollectPointTerm = search.get("collectionPoint") || "";
+
+	const hasFilterApplied =
+		!!searchPramTypes.length ||
+		showOnlyViolated ||
+		!!searchCollectPointTerm.length;
+
 	function handleSearchParams(collectPointsArr: ICollectionPoint[]) {
-		const searchPramTypes = search.getAll("paramType");
-		const showOnlyViolated = !!search.get("onlyViolated");
-		const searchCollectPointTerm = search.get("collectionPoint") || "";
 		let filteredArr = collectPointsArr.filter((item) =>
 			item.name.toLowerCase().includes(searchCollectPointTerm)
 		);
@@ -41,8 +47,15 @@ export function CollectionPointList() {
 
 	return (
 		<Flex mx="auto" maxW="720px" flexDir="column" gap={4} p={8}>
+			{hasFilterApplied && (
+				<Text color="gray.400" align="center" fontSize="sm">
+					Exibindo apenas os pontos correspondentes à busca.
+				</Text>
+			)}
 			{!filteredCollectionPoints.length ? (
-				<Text>Nenhum ponto de coleta encontrado.</Text>
+				<Text color="brand.400" align="center">
+					Nenhum ponto de coleta encontrado.
+				</Text>
 			) : (
 				<>
 					{filteredCollectionPoints.map((collectionPoint) => (
