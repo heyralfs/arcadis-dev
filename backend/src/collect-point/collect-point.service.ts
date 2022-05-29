@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Brackets, Repository } from 'typeorm';
 import { CreateCollectPointDto } from './dto/create-collect-point.dto';
 import { CollectPointEntity } from './entities/collect-point.entity';
 
@@ -68,12 +68,52 @@ export class CollectPointService {
       ]);
     }
 
+    const updateData = {
+      ...collectPointData,
+      name: collectPointData.name.toLowerCase(),
+    };
+
+    const nameOrCoordinatesAlreadyRegistered = await this.collectPointRepository
+      .createQueryBuilder('collectPoint')
+      .where(
+        new Brackets((qb) => {
+          qb.where('collectPoint.name = :name', {
+            name: updateData.name.toLowerCase(),
+          }).andWhere('collectPoint.id != :id', {
+            id: collectPointId,
+          });
+        }),
+      )
+      .orWhere(
+        new Brackets((qb) => {
+          qb.where('collectPoint.xCoord = :x', {
+            x: updateData.xCoord,
+          })
+            .andWhere('collectPoint.yCoord = :y', {
+              y: updateData.yCoord,
+            })
+            .andWhere('collectPoint.id != :id', {
+              id: collectPointId,
+            });
+        }),
+      )
+      .getOne();
+
+    if (nameOrCoordinatesAlreadyRegistered) {
+      throw new BadRequestException([
+        'Já existe um ponto de coleta cadastrado com este nome e/ou coordenadas.',
+      ]);
+    }
+
     await this.collectPointRepository.update(
       { id: collectPointId },
-      collectPointData,
+      updateData,
     );
 
-    return { ...collectPoint, ...collectPointData };
+    return {
+      ...collectPoint,
+      ...updateData,
+    };
   }
 
   async delete(collectPointId: number): Promise<CollectPointEntity> {
